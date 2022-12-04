@@ -1,0 +1,13 @@
+<view class="login">
+  <view class="header">
+    <image src="../../images/headerbj.png" mode="aspectFit" />
+  </view>
+  <view class="footer">
+    <text class="text1">欢迎来到客中行</text>
+    <van-button type="info" round bindtap="toPhone" size='normal'>账号登录</van-button>
+    <view class="register">
+      还没有账号?
+      <text bindtap="toRegister">去注册</text>
+    </view>
+  </view>
+</view>

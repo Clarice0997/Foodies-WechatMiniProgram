@@ -1,39 +1,46 @@
 /*
+  通用网络请求封装
   @param {string} url
   @param {GET|POST} method
   @param {string/object/ArrayBuffer} data
  */
-function request(url,method,data){
-  //之前讲过网络请求的封装,了解ES6,Promise对象
-  //等待网络请求
+function request(url, method, data) {
+  // 等待网络请求
   wx.showLoading({
     title: '加载数据。。。',
-    mask:true
+    mask: true
   })
-  const promise=new Promise((resolve,reject)=>{
+  // 将网络请求封装如Promise对象中 实现异步回调
+  const promise = new Promise((resolve, reject) => {
     wx.request({
       url: url,
-      method:method,
-      data:data,
-      header:{
-        'content-type':"application/x-www-form-urlencoded",
-        'cookie':wx.getStorageSync("MyToken"),
-        'Authorization':wx.getStorageSync("MyToken")
+      method: method,
+      data: data,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        cookie: wx.getStorageSync('MyToken'),
+        Authorization: wx.getStorageSync('MyToken')
       },
-      timeout:10000,
-      success(res){
+      timeout: 10000,
+      // 成功回调
+      success(res) {
+        // 原封返回实例
         resolve(res)
       },
-      fail(err){
+      // 失败回调
+      fail(err) {
+        // 返回错误原因
         reject(err)
       },
-      complete(){
+      // 完成回调
+      complete() {
+        // 网络请求结束结束隐藏
         wx.hideLoading()
       }
     })
   })
   return promise
 }
-module.exports={
+module.exports = {
   request
 }

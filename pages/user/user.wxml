@@ -1,12 +1,10 @@
 <view>
-  <view wx:if="{{userInfo.nickName}}">
+  <view wx:if="{{ userAccess }}">
     <view class="user-container">
-      <view class="bg">
-      </view>
-      <view class="mb">
-      </view>
-      <image src="{{userInfo.avatarUrl}}" mode="widthFix|heightFix" />
-      <text>{{userInfo.nickName}}</text>
+      <view class="bg"></view>
+      <view class="mb"></view>
+      <image src="{{ baseUrl + userInfo.avatar }}" mode="widthFix|heightFix" />
+      <text>{{ userInfo.nickName }}</text>
     </view>
     <view class="content">
       <view class="icon">

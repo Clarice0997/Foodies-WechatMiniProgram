@@ -1,0 +1,14 @@
+<view class="card-container">
+  <view class="top">
+      <!-- <image src="../../images/Food1.jpg" mode="widthFix"/> -->
+      <view class="content">
+        <text class="name">香肠</text>
+        <text class="desc">非常好吃</text>
+        <view class="rate">
+          <van-icon name="star" color="rgb(242,203,81)" size="25px" />
+          <text>4.9</text>
+        </view>
+        <text class="time">10min</text>
+      </view>
+  </view>
+</view>

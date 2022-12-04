@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-icon": "@vant/weapp/icon/index",
+    "van-search": "@vant/weapp/search/index",
+    "swiper":"../../components/swiper/swiper",
+    "card":"../../components/card/card"
+  },
+  "onReachBottomDistance": 50
+}

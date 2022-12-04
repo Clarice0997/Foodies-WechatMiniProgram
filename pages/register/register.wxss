@@ -1,0 +1,32 @@
+/* pages/register/register.wxss */.phone van-cell{
+  display: block;
+  margin: 20px 20px;
+  width: 100%;
+  margin-left: 0;
+}
+.phone van-cell .van-icon{
+  position: absolute;
+  left: 20px;
+}
+.phone van-cell .van-field__label{
+  display: block;
+  text-align: center;
+}
+.phone .van-button{
+  width: 45%;
+  height: 60px;
+  margin: 20px 26%;
+}
+.phone .van-button text{
+  font-size: x-large;
+  color: rgb(19, 15, 14);
+}
+.phone van-checkbox .van-checkbox__label{
+  width: 100%;
+  margin: 10px 0 10px 20px;
+  font-size: 18px;
+}
+.phone van-checkbox van-icon{
+  position: relative;
+  left: 20px;
+}

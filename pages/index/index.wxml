@@ -1,0 +1,28 @@
+<view class="container">
+  <view class="header">
+    <van-search
+      bindtap="clickSearch"
+      disabled
+      bind:focus="clickSearch"
+      value="{{ value }}"
+      shape="round"
+      background="#4fc08d"
+      placeholder="请输入搜索关键词"/>
+  <!-- 轮播图 -->
+  <swiper 
+    swiperData="{{swiperData}}"
+    autoplay="{{swiperOptions.autoplay}}"
+    interval="{{swiperOptions.interval}}"
+    duration="{{swiperOptions.duration}}"
+  >
+  </swiper>
+  </view>
+    <view class="footer">
+      <card/>
+      <card/>
+      <card/>
+      <card/>
+      <card/>
+      <card/>
+    </view>
+</view>

@@ -1,0 +1,75 @@
+/* components/card/card.wxss */
+.card-container .top {
+  width: 95%;
+  height: 220px;
+  /* border: 1px solid black; */
+  margin: 0 auto;
+  margin-top: 40px;
+  border-radius: 25px;
+  background: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2F1115%2F120R11I602%2F21120QI602-2-1200.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1671887413&t=49e134587889b6cfc797c37965eb920d') no-repeat center;
+  background-size: cover;
+  position: relative;
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.card-container .content {
+  position: absolute;
+  width: 100%;
+  height: 30%;
+  bottom: 0;
+  background: #fafafa;
+  /* border: 1px solid transparent; */
+  border-radius: 0px 0px 25px 25px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.card-container .content {
+  text-align: center;
+  font-family: 'Raleway';
+  font-style: normal;
+}
+
+.card-container .content .name {
+  display: block;
+  width: 20%;
+  height: 50%;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 7px;
+}
+
+.card-container .content .desc {
+  position: absolute;
+  font-weight: 600;
+  font-size: 13.5px;
+  line-height: 17.6px;
+  color: rgba(48, 47, 60, 0.4);
+  left: 23px;
+}
+
+.card-container .content .rate {
+  position: absolute;
+  right: 14px;
+  top: 9px;
+}
+
+.card-container .content .rate text {
+  display: inline-block;
+  /* height: 23px; */
+  font-weight: 400;
+  font-size: 13.5px;
+  /* line-height: 23px; */
+  color: rgba(48, 47, 60, 0.4);
+}
+
+.card-container .content .time {
+  position: absolute;
+  right: 14px;
+  top: 65%;
+  font-weight: 400;
+  font-size: 13.5px;
+  line-height: 13px;
+  color: rgba(48, 47, 60, 0.4);
+}

@@ -55,3 +55,16 @@ page {
   color: rgb(48, 48, 253);
   display: inline-block;
 }
+
+.guest {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+}
+
+.guest-text {
+  margin: 5% auto;
+  font-size: 30rpx;
+  color: gray;
+}

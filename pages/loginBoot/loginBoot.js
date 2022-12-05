@@ -1,3 +1,6 @@
+// 导入登录接口
+import { login } from '../../api/index'
+
 // pages/loginBoot/loginBoot.js
 Page({
   /**
@@ -17,6 +20,48 @@ Page({
     wx.navigateTo({
       url: '/pages/login/login'
     })
+  },
+  // 游客登录点击事件
+  loginGuest() {
+    // 构建游客账户
+    let guest = {
+      username: 'visitor',
+      password: '123456'
+    }
+    // 登录接口
+    login(guest)
+      .then(res => {
+        console.log(res)
+        if (res.data.code == 200) {
+          // 游客登录成功提示
+          wx.showToast({
+            title: '游客登录成功',
+            icon: 'success',
+            duration: 2000
+          })
+          // 缓存token
+          wx.setStorageSync('MyToken', res.data.token)
+          // 跳转主页
+          wx.switchTab({
+            url: '/pages/index/index'
+          })
+        } else {
+          // 游客登录失败提示
+          wx.showToast({
+            title: '游客登录失败',
+            icon: 'error',
+            duration: 2000
+          })
+          // 删除缓存token
+          wx.removeStorage({
+            key: 'MyToken'
+          })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      .finally(() => {})
   },
 
   /**

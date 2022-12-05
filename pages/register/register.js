@@ -71,7 +71,7 @@ Page({
       register(data)
         .then(res => {
           if (res.data.code == 200) {
-            console.log('注册成功');
+            console.log('注册成功')
             wx.showToast({
               title: '注册成功',
               icon: 'success',
@@ -82,6 +82,7 @@ Page({
               url: '/pages/login/login'
             })
           } else {
+            console.log('注册失败')
             wx.showToast({
               title: '注册失败',
               icon: 'error',

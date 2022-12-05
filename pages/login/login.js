@@ -1,5 +1,4 @@
-import { baseUrl } from '../../api/base'
-import { getInfo } from '../../api/index'
+import { getInfo, login } from '../../api/index'
 
 let app = getApp()
 
@@ -42,63 +41,43 @@ Page({
         username: this.data.username,
         password: this.data.password
       }
-      // 发起网络请求
-      wx.request({
-        url: baseUrl + '/login', // 请求地址
-        data: data, // 请求数据
-        method: 'POST', // 请求方法
-        header: {
-          'content-type': 'application/json;charset=UTF-8' // 请求头
-        },
-        success(res) {
+      login(data)
+        .then(res => {
           console.log(res)
           if (res.data.code == 200) {
             //登录成功
             wx.showModal({
               title: '提示',
-              content: '确认登录！',
+              content: '确认登录',
               showCancel: true,
               success(result) {
                 // 是否确认登录
                 if (result.confirm) {
+                  // 保存校验码
                   wx.setStorageSync('MyToken', res.data.token)
                   console.log('打印token:', res.data.token)
+                  // 获取个人信息
                   getInfo().then(resInfo => {
                     console.log(resInfo)
                     if (res.data.code == 200) {
                       // 为全局变量赋值
                       app.globalData.userInfo = resInfo.data.user
-                      console.log(app.globalData)
                       wx.switchTab({
                         url: '/pages/index/index'
                       })
                     } else {
                       console.log('获取用户信息失败，请重新登录')
-                      wx.setStorageSync('MyToken', '')
+                      // 删除校验码 身份用户信息获取失败
+                      wx.removeStorage({
+                        key: 'MyToken'
+                      })
                     }
                   })
-                  // 获取微信授权 获得用户名和头像地址
-                  // wx.getUserProfile({
-                  //   desc: '展示用户信息',
-                  //   success: res1 => {
-                  //     _this.setData({
-                  //       userInfo: res1.userInfo
-                  //     })
-                  //     wx.setStorageSync('userInfo', res1.userInfo)
-                  //     wx.switchTab({
-                  //       url: '/pages/index/index'
-                  //     })
-                  //   },
-                  //   fail: err => {
-                  //     console.log(err)
-                  //   },
-                  //   complete() {
-                  //     console.log('获取完成')
-                  //   }
-                  // })
-                  // 取消登录 删除校验码
                 } else if (result.cancel) {
-                  wx.setStorageSync('MyToken', '')
+                  // 取消登录 删除校验码
+                  wx.removeStorage({
+                    key: 'MyToken'
+                  })
                 }
               }
             })
@@ -108,25 +87,91 @@ Page({
               icon: 'error',
               duration: 2000
             })
-            _this.setData({
-              username: '',
-              password: '',
-              checked: false
-            })
           } else if (res.data.code == 500 && res.data.msg.indexOf('登录用户') != -1) {
             wx.showToast({
               title: '账号不存在',
               icon: 'error',
               duration: 2000
             })
-            _this.setData({
-              username: '',
-              password: '',
-              checked: false
-            })
           }
-        }
-      })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+        .finally(() => {
+          _this.setData({
+            username: '',
+            password: '',
+            checked: false
+          })
+        })
+
+      // 发起网络请求
+      // wx.request({
+      //   url: baseUrl + '/login', // 请求地址
+      //   data: data, // 请求数据
+      //   method: 'POST', // 请求方法
+      //   header: {
+      //     'content-type': 'application/json;charset=UTF-8' // 请求头
+      //   },
+      //   success(res) {
+      //     console.log(res)
+      //     if (res.data.code == 200) {
+      //       //登录成功
+      //       wx.showModal({
+      //         title: '提示',
+      //         content: '确认登录！',
+      //         showCancel: true,
+      //         success(result) {
+      //           // 是否确认登录
+      //           if (result.confirm) {
+      //             wx.setStorageSync('MyToken', res.data.token)
+      //             console.log('打印token:', res.data.token)
+      //             getInfo().then(resInfo => {
+      //               console.log(resInfo)
+      //               if (res.data.code == 200) {
+      //                 // 为全局变量赋值
+      //                 app.globalData.userInfo = resInfo.data.user
+      //                 console.log(app.globalData)
+      //                 wx.switchTab({
+      //                   url: '/pages/index/index'
+      //                 })
+      //               } else {
+      //                 console.log('获取用户信息失败，请重新登录')
+      //                 wx.setStorageSync('MyToken', '')
+      //               }
+      //             })
+      //             // 取消登录 删除校验码
+      //           } else if (result.cancel) {
+      //             wx.setStorageSync('MyToken', '')
+      //           }
+      //         }
+      //       })
+      //     } else if (res.data.code == 500 && res.data.msg == '用户不存在/密码错误') {
+      //       wx.showToast({
+      //         title: '账号密码错误',
+      //         icon: 'error',
+      //         duration: 2000
+      //       })
+      //       _this.setData({
+      //         username: '',
+      //         password: '',
+      //         checked: false
+      //       })
+      //     } else if (res.data.code == 500 && res.data.msg.indexOf('登录用户') != -1) {
+      //       wx.showToast({
+      //         title: '账号不存在',
+      //         icon: 'error',
+      //         duration: 2000
+      //       })
+      //       _this.setData({
+      //         username: '',
+      //         password: '',
+      //         checked: false
+      //       })
+      //     }
+      //   }
+      // })
     }
   },
   // 显示用户协议
@@ -138,7 +183,6 @@ Page({
   },
   // 关闭面板函数
   closeSheet() {
-    console.log(11)
     this.setData({
       showSheet: false
     })

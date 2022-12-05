@@ -15,7 +15,17 @@ function getInfo() {
   return request(baseUrl + '/getInfo', 'GET')
 }
 
+function login(data) {
+  return request(baseUrl + '/login', 'POST', data)
+}
+
+function register(data) {
+  return request(baseUrl + '/register', 'POST')
+}
+
 module.exports = {
   getBanner,
-  getInfo
+  getInfo,
+  login,
+  register
 }

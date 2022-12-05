@@ -14,7 +14,7 @@ Page({
   },
   clickHandle() {
     wx.navigateTo({
-      url: '/pages/login/login'
+      url: '/pages/loginBoot/loginBoot'
     })
   },
   outLogin() {

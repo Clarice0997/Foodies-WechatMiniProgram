@@ -17,7 +17,8 @@ function request(url, method, data) {
       method: method,
       data: data,
       header: {
-        'content-type': 'application/x-www-form-urlencoded',
+        // 'content-type': 'application/x-www-form-urlencoded',
+        'content-type': 'application/json;charset=UTF-8',
         cookie: wx.getStorageSync('MyToken'),
         Authorization: wx.getStorageSync('MyToken')
       },

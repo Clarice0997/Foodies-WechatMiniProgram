@@ -8,69 +8,103 @@ Page({
   data: {
     checked: false,
     username: '',
-    password: ''
+    password: '',
+    checkPassword: '',
+    checkPasswordError: ''
   },
+  // 账号输入框更改事件
   formInputChange(e) {
-    console.log(e)
     this.setData({
       username: e.detail.value
     })
   },
+  // 密码输入框更改事件
   formPasswordChange(e) {
-    console.log(e)
     this.setData({
       password: e.detail.value
     })
-  },
-  loginFun() {
-    if (!this.data.username || !this.data.password || this.data.checked === false) {
-      wx.showToast({
-        title: '信息不完整',
-        icon: 'error',
-        duration: 2000
+    // 比对密码和确认密码是否相同
+    if (this.data.checkPassword != this.data.password) {
+      // 设置错误提示
+      this.setData({
+        checkPasswordError: '确认密码错误'
       })
     } else {
+      // 消除错误提示
+      this.setData({
+        checkPasswordError: ''
+      })
+    }
+  },
+  // 确认密码输入框更改事件
+  formCheckPasswordChange(e) {
+    this.setData({
+      checkPassword: e.detail.value
+    })
+    // 比对密码和确认密码是否相同
+    if (this.data.checkPassword != this.data.password) {
+      // 设置错误提示
+      this.setData({
+        checkPasswordError: '确认密码错误'
+      })
+    } else {
+      // 消除错误提示
+      this.setData({
+        checkPasswordError: ''
+      })
+    }
+  },
+  // 是否同意用户协议复选框改变事件
+  onChange(e) {
+    this.setData({
+      checked: e.detail
+    })
+  },
+  // 注册功能
+  registerFunction() {
+    if (this.data.username != '' && this.data.password != '' && this.data.checkPassword != '' && this.data.checkPasswordError == '' && this.data.checked) {
+      // 构建提交数据对象
       let data = {
         username: this.data.username,
         password: this.data.password
       }
-      console.log(data)
-      wx.request({
-        url: 'http://42.193.173.23:8080/login', //请求地址
-        data: data, //请求数据
-        method: 'POST', //请求方法
-        header: {
-          'content-type': 'application/json;charset=UTF-8' // 请求头
-          // 'content-type': 'x-www-form-urlencoded'
-        },
-        success(res) {
-          console.log(res)
-          wx.setStorageSync('MyToken', res.data.token)
-          console.log('打印token:', res.data.token)
-          //登录成功
-          wx.showModal({
-            title: '提示',
-            content: '确认登录！',
-            showCancel: true,
-            success(res) {
-              if (res.confirm) {
-                wx.switchTab({
-                  url: '/pages/index/index'
-                })
-              } else if (res.cancel) {
-                wx.setStorageSync('MyToken', '')
-              }
-            }
+      register(data)
+        .then(res => {
+          if (res.data.code == 200) {
+            wx.showToast({
+              title: '注册成功',
+              icon: 'success',
+              duration: 2000
+            })
+            // 跳转登录页 navigateTo not switchTab
+            wx.navigateTo({
+              url: '/pages/login/login'
+            })
+          } else {
+            wx.showToast({
+              title: '注册失败',
+              icon: 'error',
+              duration: 2000
+            })
+            console.log(res)
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+        .finally(() => {
+          // 重置数据对象
+          this.setData({
+            checked: false,
+            username: '',
+            password: '',
+            checkPassword: '',
+            checkPasswordError: ''
           })
-        }
-      })
+        })
     }
   },
-  onChange(event) {
-    this.setData({
-      checked: event.detail
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */

@@ -20,7 +20,7 @@ function login(data) {
 }
 
 function register(data) {
-  return request(baseUrl + '/register', 'POST')
+  return request(baseUrl + '/register', 'POST', data)
 }
 
 module.exports = {

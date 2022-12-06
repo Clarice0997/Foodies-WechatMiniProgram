@@ -62,6 +62,8 @@ Page({
                     if (res.data.code == 200) {
                       // 为全局变量赋值
                       app.globalData.userInfo = resInfo.data.user
+                      app.globalData.isGuest = false
+                      // 跳转首页
                       wx.switchTab({
                         url: '/pages/index/index'
                       })

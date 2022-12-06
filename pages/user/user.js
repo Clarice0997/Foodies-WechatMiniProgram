@@ -12,21 +12,30 @@ Page({
     userAccess: false,
     baseUrl: baseUrl
   },
+  // 登录按钮点击事件
   clickHandle() {
+    // 跳转登录引导页
     wx.navigateTo({
       url: '/pages/loginBoot/loginBoot'
     })
   },
+  // 退出登录事件
   outLogin() {
+    // 清空用户信息
     app.globalData.userInfo = {}
+    // 清空Token
     wx.removeStorage({
       key: 'MyToken'
     })
+    // 重置数据对象
     this.setData({
-      userAccess: false
+      userAccess: false,
+      userInfo: {}
     })
-    wx.switchTab({
-      url: '/pages/index/index'
+    app.globalData.isGuest = false
+    // 跳转首页
+    wx.navigateTo({
+      url: '/pages/loginBoot/loginBoot'
     })
   },
 
@@ -44,16 +53,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    // 判断当前是否为游客登录
     console.log(app.globalData)
-    // 页面显示获取用户信息
-    if (app.globalData.userInfo.userId) {
-      console.log('获取用户数据成功')
+    if (app.globalData.isGuest == false) {
       this.setData({
         userInfo: app.globalData.userInfo,
         userAccess: true
       })
     } else {
-      console.log('获取用户数据失败')
       this.setData({
         userAccess: false
       })

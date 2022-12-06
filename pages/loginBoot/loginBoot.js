@@ -1,6 +1,9 @@
 // 导入登录接口
 import { login } from '../../api/index'
 
+// 定义微信实例
+let app = getApp()
+
 // pages/loginBoot/loginBoot.js
 Page({
   /**
@@ -41,6 +44,8 @@ Page({
           })
           // 缓存token
           wx.setStorageSync('MyToken', res.data.token)
+          // 赋值全局变量 是否是游客
+          app.globalData.isGuest = true
           // 跳转主页
           wx.switchTab({
             url: '/pages/index/index'
@@ -52,6 +57,8 @@ Page({
             icon: 'error',
             duration: 2000
           })
+          // 赋值全局变量 是否是游客
+          app.globalData.isGuest = false
           // 删除缓存token
           wx.removeStorage({
             key: 'MyToken'

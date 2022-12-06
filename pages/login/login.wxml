@@ -1,8 +1,8 @@
 <van-form models="{{formData}}">
   <van-cell-group class="phone">
-    <van-field value="{{username}}" clearable label="账号" bind:blur="formInputChange" left-icon="phone" placeholder="请输入账号" />
+    <van-field value="{{username}}" label="账号" bind:blur="formInputChange" left-icon="phone" placeholder="请输入账号" />
     <van-field value="{{password}}" type="password" label="密码" bind:blur="formPasswordChange" left-icon="lock" placeholder="请输入密码" border="{{ false }}" />
-    <van-checkbox value="{{checked }}" bind:change="onChange">是否同意用户协议</van-checkbox>
+    <van-checkbox value="{{checked}}" bind:change="onChange">是否同意用户协议</van-checkbox>
     <van-button size="normal" round color="linear-gradient(to right, #a1c4fd, #c2e9fb)" bindtap="loginFunction">
       <text>登录</text>
     </van-button>

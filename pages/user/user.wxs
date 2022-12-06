@@ -1,0 +1,12 @@
+// 拼接头像Url函数
+var concatAvatarUrl = function (avatarUrl, baseUrl) {
+  var url = ''
+  if (avatarUrl) {
+    url = baseUrl + avatarUrl
+  } else {
+    url = '../../images/avatar.png'
+  }
+  return url
+}
+
+module.exports.concatAvatarUrl = concatAvatarUrl

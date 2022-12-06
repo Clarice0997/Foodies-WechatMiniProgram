@@ -1,15 +1,16 @@
 /* pages/user/user.wxss */
-.bg{
+.bg {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 160px;
   background: url('https://img1.baidu.com/it/u=3799699023,1325374218&fm=253&fmt=auto&app=120&f=JPEG?w=900&h=500') no-repeat center;
-  background-size:cover;
+  background-size: cover;
   z-index: -1;
 }
-.mb{
+
+.mb {
   position: fixed;
   top: 0;
   left: 0;
@@ -18,7 +19,8 @@
   z-index: -1;
   background: rgba(50, 50, 50, 0.6);
 }
-.login{
+
+.login {
   width: 635rpx;
   margin: 0 auto;
   height: 68px;
@@ -26,41 +28,47 @@
   border-radius: 25px;
   box-sizing: border-box;
 }
-.login .van-button{
+
+.login .van-button {
   width: 100%;
   height: 68px;
   font-size: x-large;
 }
-.out .van-button{
+
+.out .van-button {
   width: 85%;
   padding: 10px;
   height: 68px;
   font-size: x-large;
   margin: 0 30px 10px 30px;
 }
+
 /* page{
   width: 100%;
   height: 200rpx;
   background: url('https://img0.baidu.com/it/u=1803559051,2128465057&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500') no-repeat center;
   background-size: cover;
 } */
- .user-container{
-  margin:90px 30px 0 30px;
+.user-container {
+  margin: 90px 30px 0 30px;
   padding: 20px;
   background: #FAFAFA;
   /* border: 1px solid black; */
   height: 100px;
   border-radius: 15px;
 }
-.user-container image{
+
+.user-container image {
   display: block;
   width: 6rem;
   border-radius: 50%;
   height: 6rem;
   margin: 0px auto;
-  margin-top:-70px;
+  margin-top: -70px;
+  background-color: whitesmoke;
 }
-.user-container text{
+
+.user-container text {
   display: block;
   width: 100%;
   height: 30px;
@@ -72,9 +80,10 @@
   text-align: center;
   color: #302F3C;
   margin: 0 auto;
-  margin-top:25px;
+  margin-top: 25px;
 }
-.content{
+
+.content {
   padding: 15px;
   height: 68px;
   overflow: hidden;
@@ -84,7 +93,8 @@
   margin: 15px 30px;
   box-sizing: border-box;
 }
-.content .icon{
+
+.content .icon {
   width: 41px;
   height: 41px;
   border-radius: 50%;
@@ -92,14 +102,16 @@
   float: left;
   position: relative;
 }
-.content .icon .icons{
+
+.content .icon .icons {
   display: block;
   position: absolute;
   top: 20px;
   left: 20px;
-  transform:translate(-50%,-50%)
+  transform: translate(-50%, -50%)
 }
-.content text{
+
+.content text {
   display: inline-block;
   font-family: 'Raleway';
   font-style: normal;
@@ -108,5 +120,5 @@
   line-height: 41px;
   text-align: center;
   color: #302F3C;
-  margin-left:13px;
+  margin-left: 13px;
 }

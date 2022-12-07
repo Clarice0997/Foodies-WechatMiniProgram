@@ -3,19 +3,19 @@
 <!-- 页面代码 -->
 <view>
   <view wx:if="{{ userAccess }}">
-    <view class="user-container">
+    <view class="user-container" bindtap="navigateUserDetail">
       <view class="bg"></view>
       <view class="mb"></view>
       <image src="{{ concatAvatarUrl.concatAvatarUrl(userInfo.avatar,baseUrl) }}" mode="widthFix|heightFix" />
       <text>{{ userInfo.nickName }}</text>
     </view>
-    <view class="content">
+    <view class="content" bindtap="navigateCollection">
       <view class="icon">
         <van-icon name="shop" size="1.5rem" class="icons" color="rgb(124,179,66)" />
       </view>
       <text>我的收藏</text>
     </view>
-    <view class="content">
+    <view class="content" bindtap="navigateMessage">
       <view class="icon">
         <van-icon name="comment-circle" size="1.5rem" class="icons" color="rgb(128,183,249)" />
       </view>
@@ -27,7 +27,7 @@
       </view>
       <text>认证商家</text>
     </view>
-    <view class="content">
+    <view class="content" bindtap="navigateHelp">
       <view class="icon">
         <van-icon name="phone" size="1.5rem" class="icons" color="rgb(245,142,111)" />
       </view>
@@ -53,7 +53,7 @@
       </view>
       <text>认证商家</text>
     </view>
-    <view class="content">
+    <view class="content" bindtap="navigateHelp">
       <view class="icon">
         <van-icon name="phone" size="1.5rem" class="icons" color="rgb(245,142,111)" />
       </view>

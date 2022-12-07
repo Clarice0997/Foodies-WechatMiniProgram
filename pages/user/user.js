@@ -38,6 +38,30 @@ Page({
       url: '/pages/loginBoot/loginBoot'
     })
   },
+  // 跳转用户详细页面
+  navigateUserDetail() {
+    wx.navigateTo({
+      url: '/pages/userDetail/userDetail'
+    })
+  },
+  // 跳转收藏盲盒页面
+  navigateCollection() {
+    wx.navigateTo({
+      url: '/pages/collection/collection'
+    })
+  },
+  // 跳转系统消息页面
+  navigateMessage() {
+    wx.navigateTo({
+      url: '/pages/message/message'
+    })
+  },
+  // 跳转系统消息页面
+  navigateHelp() {
+    wx.navigateTo({
+      url: '/pages/help/help'
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

@@ -7,6 +7,10 @@
     "pages/user/user",
     "pages/search/search",
     "pages/order/order",
+    "pages/userDetail/userDetail",
+    "pages/collection/collection",
+    "pages/message/message",
+    "pages/help/help",
     "pages/logs/logs"
   ],
   "window": {

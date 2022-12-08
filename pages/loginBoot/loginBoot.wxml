@@ -1,6 +1,6 @@
 <view class="login">
   <view class="header">
-    <image src="../../images/headerbj.png" mode="aspectFit" />
+    <canvas id="lottieImg" type="2d"></canvas>
   </view>
   <view class="footer">
     <text class="text1">欢迎来到客中行</text>

@@ -1,5 +1,6 @@
-// 导入登录接口
+// 导入
 import { login } from '../../api/index'
+import lottie from 'lottie-miniprogram'
 
 // 定义微信实例
 let app = getApp()
@@ -70,6 +71,32 @@ Page({
       })
       .finally(() => {})
   },
+  // 初始化画布函数
+  initCanvas() {
+    // 创建节点
+    wx.createSelectorQuery()
+      .select('#lottieImg')
+      .node(res => {
+        // 构建画布
+        const canvas = res.node
+        // 指定绘画环境
+        const context = canvas.getContext('2d')
+        // 挂载lottie
+        lottie.setup(canvas)
+        // 配置lottie参数
+        lottie.loadAnimation({
+          // 循环
+          loop: true,
+          // 自动播放
+          autoplay: true,
+          path: 'https://assets9.lottiefiles.com/private_files/lf30_fcotb6bb.json',
+          rendererSettings: {
+            context
+          }
+        })
+      })
+      .exec()
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -84,7 +111,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    this.initCanvas()
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

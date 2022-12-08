@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@vant/weapp": "^1.10.7"
+    "@vant/weapp": "^1.10.7",
+    "lottie-miniprogram": "^1.0.12"
   }
 }

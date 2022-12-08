@@ -1,4 +1,5 @@
-import { getInfo, login } from '../../api/index'
+import { getInfo, login } from '../../api/userAPI'
+import { initLottieCanvas } from '../../utils/lottie'
 
 let app = getApp()
 
@@ -135,7 +136,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    initLottieCanvas('#canvas', 'https://assets3.lottiefiles.com/packages/lf20_jcikwtux.json')
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

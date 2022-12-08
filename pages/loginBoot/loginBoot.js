@@ -1,5 +1,5 @@
 // 导入
-import { login } from '../../api/index'
+import { login } from '../../api/userAPI'
 import { initLottieCanvas } from '../../utils/lottie'
 
 // 定义微信实例

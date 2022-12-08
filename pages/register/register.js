@@ -1,4 +1,5 @@
-import { register } from '../../api/index'
+import { register } from '../../api/userAPI'
+import { initLottieCanvas } from '../../utils/lottie'
 
 // pages/register/register.js
 Page({
@@ -120,7 +121,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    initLottieCanvas('#canvas', 'https://assets7.lottiefiles.com/packages/lf20_tpa51dr0.json')
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

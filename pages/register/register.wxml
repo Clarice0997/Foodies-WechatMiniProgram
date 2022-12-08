@@ -1,4 +1,6 @@
-<!-- pages/register/register.wxml -->
+<view class="header">
+  <canvas id="canvas" type="2d"></canvas>
+</view>
 <van-form models="{{ formData }}">
   <van-cell-group class="phone">
     <van-field value="{{ username }}" label="账号" bind:blur="formInputChange" left-icon="phone" placeholder="请输入账号" />

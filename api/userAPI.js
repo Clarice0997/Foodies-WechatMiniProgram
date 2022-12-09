@@ -23,7 +23,7 @@ function getProfile() {
 }
 
 // 设置个人信息接口
-function setProfile() {
+function setProfile(data) {
   return request(baseUrl + '/system/user/profile', 'PUT', data)
 }
 

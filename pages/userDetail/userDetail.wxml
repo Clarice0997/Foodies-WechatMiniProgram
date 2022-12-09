@@ -11,17 +11,34 @@
     </view>
   </van-cell>
   <van-cell title="用户名称" value="admin" center></van-cell>
-  <van-field label="用户昵称" value="{{ userInfo.nickname }}" placeholder="用户昵称" bind:blur="formNicknameChange" id="nickname" border="false" input-align="right" />
-  <van-field label="手机号码" value="{{ userInfo.phone }}" placeholder="手机号码" bind:blur="formNicknameChange" id="phone" border="false" input-align="right" />
+  <van-field label="用户昵称" value="{{ userInfo.nickname }}" placeholder="用户昵称" bind:blur="formChangeHandler" id="nickname" border="false" input-align="right" />
+  <van-field label="手机号码" value="{{ userInfo.phone }}" placeholder="手机号码" bind:blur="formChangeHandler" id="phone" border="false" input-align="right" />
   <van-cell title="性别" value="{{ sexColumns[sexIndex] }}" center is-link bind:click="showPopup"></van-cell>
-  <van-field label="邮箱" value="{{ userInfo.email }}" placeholder="邮箱" bind:blur="formNicknameChange" id="email" border="false" input-align="right" />
+  <van-field label="邮箱" value="{{ userInfo.email }}" placeholder="邮箱" bind:blur="formChangeHandler" id="email" border="false" input-align="right" />
 </van-cell-group>
 <!-- 按钮部分 -->
 <view class="bottom">
   <van-button type="primary" round icon="star-o" bind:click="clickHandler">确认修改</van-button>
-  <van-button type="warning" round icon="setting-o">重置信息</van-button>
+  <van-button type="info" round icon="contact" bind:click="changePasswordHandler">修改密码</van-button>
+  <van-button type="warning" round icon="setting-o" bind:click="resetHandler">重置信息</van-button>
 </view>
 <!-- 性别选择器弹出层 -->
 <van-popup show="{{ showPop }}" bind:close="closePopup" custom-style="height: 40%;" position="bottom" close-icon="close" round>
   <van-picker show-toolbar title="性别" columns="{{ sexColumns }}" default-index="{{ 0 }}" bind:confirm="onConfirmSex" />
+</van-popup>
+<!-- 修改密码弹出层 -->
+<van-popup show="{{ showPasswordPop }}" bind:close="closePasswordPopup" custom-style="height: 40%;" position="bottom" closeable close-icon-position="top-right" close-icon="close" round>
+  <view class="passwordPop-container">
+    <van-cell-group inset>
+      <van-field label="旧密码" value="{{ passwordList.oldPassword }}" placeholder="请输入旧密码" bind:blur="passwordChangeHandler" id="oldPassword" border="false" input-align="right" password />
+      <van-field label="新密码" value="{{ passwordList.newPassword }}" placeholder="请输入新密码" bind:blur="passwordChangeHandler" id="newPassword" border="false" input-align="right" password />
+      <van-field label="确认密码" value="{{ passwordList.checkedPassword }}" placeholder="请输入确认密码" bind:blur="passwordChangeHandler" id="checkedPassword" border="false" input-align="right" password />
+    </van-cell-group>
+    <view class="passwordPop-buttons">
+      <van-button type="primary" round icon="success" bind:click="confirmPasswordHandler">
+        确认修改
+      </van-button>
+      <van-button type="danger" round icon="cross" bind:click="closePasswordPopup">取消修改</van-button>
+    </view>
+  </view>
 </van-popup>

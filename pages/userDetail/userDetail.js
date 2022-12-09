@@ -1,7 +1,7 @@
 // pages/userDetail/userDetail.js
 const app = getApp()
 import { initLottieCanvas } from '../../utils/lottie'
-import { getProfile, setProfile } from '../../api/userAPI'
+import { getProfile, setProfile, updatePwd } from '../../api/userAPI'
 
 Page({
   /**
@@ -15,13 +15,20 @@ Page({
       sex: '男',
       email: ''
     },
+    // 修改密码数据对象
+    passwordList: {
+      oldPassword: '',
+      newPassword: '',
+      checkedPassword: ''
+    },
     showPop: false,
+    showPasswordPop: false,
     sexColumns: ['男', '女'],
     sexIndex: 0,
     rawUserInfo: {}
   },
   // 输入框改变事件
-  formNicknameChange(e) {
+  formChangeHandler(e) {
     this.setData({
       ['userInfo.' + e.currentTarget.id]: e.detail.value
     })
@@ -101,6 +108,7 @@ Page({
           this.setData({
             rawUserInfo: data
           })
+          console.log(data)
           // 更改数据源
           this.setData({
             ['userInfo.nickname']: data.nickName,
@@ -124,6 +132,84 @@ Page({
           duration: 2000
         })
       })
+  },
+  // 重置按钮点击事件
+  async resetHandler() {
+    // 重新获取用户信息
+    await this.getProfileHandler()
+  },
+  // 修改密码点击事件
+  changePasswordHandler() {
+    this.setData({
+      showPasswordPop: true
+    })
+  },
+  // 关闭弹出层事件
+  closePasswordPopup() {
+    this.setData({
+      showPasswordPop: false,
+      passwordList: {
+        oldPassword: '',
+        newPassword: '',
+        checkedPassword: ''
+      }
+    })
+  },
+  // 密码输入框更改事件
+  passwordChangeHandler(e) {
+    this.setData({
+      ['passwordList.' + e.currentTarget.id]: e.detail.value
+    })
+  },
+  // 确认更改密码事件
+  confirmPasswordHandler() {
+    let oldPassword = this.data.passwordList.oldPassword
+    let newPassword = this.data.passwordList.newPassword
+    // 判断旧密码&新密码不能相同 发起修改密码请求
+    if (oldPassword != newPassword) {
+      let query = `?oldPassword=${oldPassword}&newPassword=${newPassword}`
+      updatePwd(query)
+        .then(res => {
+          if (res.data.code == 200) {
+            wx.showToast({
+              title: '修改密码成功',
+              icon: 'success',
+              duration: 2000
+            })
+          } else {
+            wx.showToast({
+              title: '修改密码错误',
+              icon: 'error',
+              duration: 2000
+            })
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          wx.showToast({
+            title: '修改密码错误',
+            icon: 'error',
+            duration: 2000
+          })
+        })
+        .finally(() => {
+          // 重置
+          this.setData({
+            showPasswordPop: false,
+            passwordList: {
+              oldPassword: '',
+              newPassword: '',
+              checkedPassword: ''
+            }
+          })
+        })
+    } else {
+      wx.showToast({
+        title: '密码不能相同',
+        icon: 'error',
+        duration: 2000
+      })
+    }
   },
 
   /**

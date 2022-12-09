@@ -27,5 +27,10 @@ function setProfile(data) {
   return request(baseUrl + '/system/user/profile', 'PUT', data)
 }
 
+// 修改密码接口
+function updatePwd(query) {
+  return request(baseUrl + '/system/user/profile/updatePwd' + query, 'PUT')
+}
+
 // 导出
-module.exports = { login, register, getInfo, getProfile, setProfile }
+module.exports = { login, register, getInfo, getProfile, setProfile, updatePwd }

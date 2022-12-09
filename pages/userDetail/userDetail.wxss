@@ -26,3 +26,13 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.passwordPop-container {
+  margin-top: 30px;
+}
+
+.passwordPop-buttons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-evenly;
+}

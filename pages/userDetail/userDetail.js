@@ -15,8 +15,20 @@ Page({
       sex: '男',
       email: ''
     },
+    // 用户信息错误提示数据对象
+    userInfoError: {
+      nickname: '',
+      phone: '',
+      email: ''
+    },
     // 修改密码数据对象
     passwordList: {
+      oldPassword: '',
+      newPassword: '',
+      checkedPassword: ''
+    },
+    // 修改密码错误提示数据对象
+    passwordListError: {
       oldPassword: '',
       newPassword: '',
       checkedPassword: ''
@@ -29,8 +41,48 @@ Page({
   },
   // 输入框改变事件
   formChangeHandler(e) {
+    let value = e.detail.value
+    let id = e.currentTarget.id
+    // 判断输入框种类 对value进行校验
+    if (id == 'nickname') {
+      // 昵称校验：长度2-15中文字符
+      if (!Boolean(value.length >= 2 && value.length < 15)) {
+        this.setData({
+          ['userInfoError.' + id]: '昵称长度2-15字符'
+        })
+        return
+      } else {
+        this.setData({
+          ['userInfoError.' + id]: ''
+        })
+      }
+    } else if (id == 'phone') {
+      // 电话校验
+      if (!Boolean(/^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/.test(value))) {
+        this.setData({
+          ['userInfoError.' + id]: '电话不合法'
+        })
+        return
+      } else {
+        this.setData({
+          ['userInfoError.' + id]: ''
+        })
+      }
+    } else if (id == 'email') {
+      // 邮箱校验
+      if (!Boolean(/(^[\w.\-]+@(?:[a-z0-9]+(?:-[a-z0-9]+)*\.)+[a-z]{2,3}$)|(^1[3|4|5|8]\d{9}$)/.test(value))) {
+        this.setData({
+          ['userInfoError.' + id]: '邮箱不合法'
+        })
+        return
+      } else {
+        this.setData({
+          ['userInfoError.' + id]: ''
+        })
+      }
+    }
     this.setData({
-      ['userInfo.' + e.currentTarget.id]: e.detail.value
+      ['userInfo.' + id]: value
     })
   },
   // 点击展示弹出层事件
@@ -47,17 +99,29 @@ Page({
   },
   // 选择性别确定事件
   onConfirmSex(event) {
-    const { value, index } = event.detail
+    const { index } = event.detail
     // 赋值
     this.setData({
       sexIndex: index,
+      showPop: false,
       'userInfo.sex': this.data.sexColumns[index]
     })
   },
   // 确认修改按钮点击事件
   clickHandler() {
-    let data = this.data.rawUserInfo
+    // 校验是否存在错误信息
+    for (let key in this.data.userInfoError) {
+      if (this.data.userInfoError[key] != '') {
+        wx.showToast({
+          title: '数据不合法',
+          icon: 'error',
+          duration: 2000
+        })
+        return
+      }
+    }
     // 判断是否存在数据 修改数据对象
+    let data = this.data.rawUserInfo
     if (data) {
       data.nickName = this.data.userInfo.nickname
       data.phonenumber = this.data.userInfo.phone
@@ -137,6 +201,14 @@ Page({
   async resetHandler() {
     // 重新获取用户信息
     await this.getProfileHandler()
+    // 重置错误信息
+    this.setData({
+      userInfoError: {
+        nickname: '',
+        phone: '',
+        email: ''
+      }
+    })
   },
   // 修改密码点击事件
   changePasswordHandler() {

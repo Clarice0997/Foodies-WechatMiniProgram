@@ -11,10 +11,10 @@
     </view>
   </van-cell>
   <van-cell title="用户名称" value="admin" center></van-cell>
-  <van-field label="用户昵称" value="{{ userInfo.nickname }}" placeholder="用户昵称" bind:blur="formChangeHandler" id="nickname" border="false" input-align="right" />
-  <van-field label="手机号码" value="{{ userInfo.phone }}" placeholder="手机号码" bind:blur="formChangeHandler" id="phone" border="false" input-align="right" />
+  <van-field label="用户昵称" value="{{ userInfo.nickname }}" error-message="{{ userInfoError.nickname }}" placeholder="用户昵称" bind:blur="formChangeHandler" id="nickname" border="false" input-align="right" />
+  <van-field label="手机号码" value="{{ userInfo.phone }}" error-message="{{ userInfoError.phone }}" placeholder="手机号码" bind:blur="formChangeHandler" id="phone" border="false" input-align="right" />
   <van-cell title="性别" value="{{ sexColumns[sexIndex] }}" center is-link bind:click="showPopup"></van-cell>
-  <van-field label="邮箱" value="{{ userInfo.email }}" placeholder="邮箱" bind:blur="formChangeHandler" id="email" border="false" input-align="right" />
+  <van-field label="邮箱" value="{{ userInfo.email }}" error-message="{{ userInfoError.email }}" placeholder="邮箱" bind:blur="formChangeHandler" id="email" border="false" input-align="right" />
 </van-cell-group>
 <!-- 按钮部分 -->
 <view class="bottom">

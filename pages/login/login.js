@@ -64,6 +64,10 @@ Page({
                       // 为全局变量赋值
                       app.globalData.userInfo = resInfo.data.user
                       app.globalData.isGuest = false
+                      // 判断用户角色
+                      if (resInfo.data.roles[0] != 'customer') {
+                        app.globalData.isBusiness = true
+                      }
                       // 跳转首页
                       wx.switchTab({
                         url: '/pages/index/index'

@@ -15,6 +15,7 @@ App({
   },
   globalData: {
     userInfo: {},
-    isGuest: false
+    isGuest: false,
+    isBusiness: false
   }
 })

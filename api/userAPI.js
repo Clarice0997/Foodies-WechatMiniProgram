@@ -32,5 +32,10 @@ function updatePwd(query) {
   return request(baseUrl + '/system/user/profile/updatePwd' + query, 'PUT')
 }
 
+// 申请商家接口
+function applyToBusiness() {
+  return request(baseUrl + '/system/role/applyToBusiness', 'PUT')
+}
+
 // 导出
-module.exports = { login, register, getInfo, getProfile, setProfile, updatePwd }
+module.exports = { login, register, getInfo, getProfile, setProfile, updatePwd, applyToBusiness }

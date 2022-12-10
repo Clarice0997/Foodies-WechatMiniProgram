@@ -21,7 +21,7 @@
       </view>
       <text>系统消息</text>
     </view>
-    <view class="content">
+    <view class="content" bindtap="becomeBuinessHandler" wx:if="{{!isBusiness}}">
       <view class="icon">
         <van-icon name="manager" size="1.5rem" class="icons" color="rgb(252,185,41)" />
       </view>
@@ -46,12 +46,6 @@
   <view wx:else>
     <view class="login">
       <van-button type="primary" size="large" bindtap="clickHandle" round>登录</van-button>
-    </view>
-    <view class="content">
-      <view class="icon">
-        <van-icon name="manager" size="1.5rem" class="icons" color="rgb(252,185,41)" />
-      </view>
-      <text>认证商家</text>
     </view>
     <view class="content" bindtap="navigateHelp">
       <view class="icon">

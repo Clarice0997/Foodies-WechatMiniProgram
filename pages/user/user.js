@@ -1,6 +1,7 @@
 // pages/user/user.js
 let app = getApp()
 
+import { applyToBusiness } from '../../api/userAPI'
 import { baseUrl } from '../../api/base'
 
 Page({
@@ -10,7 +11,8 @@ Page({
   data: {
     userInfo: {},
     userAccess: false,
-    baseUrl: baseUrl
+    baseUrl: baseUrl,
+    isBusiness: false
   },
   // 登录按钮点击事件
   clickHandle() {
@@ -33,6 +35,7 @@ Page({
       userInfo: {}
     })
     app.globalData.isGuest = false
+    app.globalData.isBusiness = false
     // 跳转首页
     wx.navigateTo({
       url: '/pages/loginBoot/loginBoot'
@@ -62,6 +65,38 @@ Page({
       url: '/pages/help/help'
     })
   },
+  // 成为商家按钮点击事件
+  becomeBuinessHandler() {
+    applyToBusiness()
+      .then(result => {
+        console.log(result)
+        if (result.data.code == 200) {
+          app.globalData.isBusiness = true
+          this.setData({
+            isBusiness: true
+          })
+          wx.showToast({
+            title: '成为商家成功',
+            icon: 'success',
+            duration: 2000
+          })
+        } else {
+          wx.showToast({
+            title: '成为商家失败',
+            icon: 'error',
+            duration: 2000
+          })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        wx.showToast({
+          title: '成为商家失败',
+          icon: 'error',
+          duration: 2000
+        })
+      })
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -79,7 +114,7 @@ Page({
   onShow() {
     // 判断当前是否为游客登录
     console.log(app.globalData)
-    if (app.globalData.isGuest == false) {
+    if (!app.globalData.isGuest) {
       this.setData({
         userInfo: app.globalData.userInfo,
         userAccess: true
@@ -87,6 +122,16 @@ Page({
     } else {
       this.setData({
         userAccess: false
+      })
+    }
+    // 判断当前是否为非顾客登录
+    if (!app.globalData.isBusiness) {
+      this.setData({
+        isBusiness: false
+      })
+    } else {
+      this.setData({
+        isBusiness: true
       })
     }
   },

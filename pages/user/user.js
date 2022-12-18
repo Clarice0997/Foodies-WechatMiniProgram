@@ -2,7 +2,7 @@
 let app = getApp()
 
 import { applyToBusiness } from '../../api/userAPI'
-import { baseUrl } from '../../api/base'
+import { imageUrl } from '../../api/base'
 
 Page({
   /**
@@ -11,7 +11,7 @@ Page({
   data: {
     userInfo: {},
     userAccess: false,
-    baseUrl: baseUrl,
+    imageUrl: imageUrl,
     isBusiness: false
   },
   // 登录按钮点击事件

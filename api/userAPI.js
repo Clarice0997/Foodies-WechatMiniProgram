@@ -34,7 +34,7 @@ function updatePwd(query) {
 
 // 申请商家接口
 function applyToBusiness() {
-  return request(baseUrl + '/system/role/applyToBusiness', 'PUT')
+  return request(baseUrl + 'system/role/applyToBusiness', 'PUT')
 }
 
 // 导出

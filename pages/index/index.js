@@ -1,4 +1,6 @@
 const { getBanner } = require('../../api/index.js')
+import { baseUrl } from '../../api/base'
+
 Page({
   data: {
     value: '',
@@ -7,7 +9,8 @@ Page({
       interval: 3000,
       duration: 1000,
       swiperData: []
-    }
+    },
+    baseUrl: baseUrl
   },
   clickSearch() {
     wx.navigateTo({
@@ -16,11 +19,12 @@ Page({
   },
 
   onLoad() {
-    getBanner({ pageNum: 1, pageSize: 10 }).then(res => {
+    getBanner().then(res => {
       console.log(res)
       this.setData({
         swiperData: res.data.rows
       })
+      console.log(this.data.swiperData)
     })
   },
   onReachBottom() {

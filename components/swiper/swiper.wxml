@@ -1,14 +1,9 @@
 <view class="swiper">
-  <swiper
-    class="myswiper"
-    autoplay="{{autoplay}}"
-    interval="{{interval}}"
-    duration="{{duration}}"
-  >
-   <block wx:for="{{swiperData}}" wx:key="bannerId">
-    <swiper-item>
-      <image src="{{baseUrl+item.bannerAddress}}" mode="widthFix"/>
-    </swiper-item>
-   </block>
+  <swiper class="myswiper" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{swiperData}}" wx:key="bannerId">
+      <swiper-item item-id="{{item.categoryId}}">
+        <image src="{{imageUrl+item.categoryCover}}" mode="widthFix" />
+      </swiper-item>
+    </block>
   </swiper>
 </view>

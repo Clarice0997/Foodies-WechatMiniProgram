@@ -1,8 +1,9 @@
-.swiper{
+.swiper {
   padding: 0 10px;
   margin-top: 10px;
   height: 200px;
 }
-.swiper image{
+
+.swiper image {
   width: 100%;
 }

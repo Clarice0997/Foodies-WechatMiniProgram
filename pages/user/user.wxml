@@ -6,7 +6,7 @@
     <view class="user-container" bindtap="navigateUserDetail">
       <view class="bg"></view>
       <view class="mb"></view>
-      <image src="{{ concatAvatarUrl.concatAvatarUrl(userInfo.avatar,baseUrl) }}" mode="widthFix|heightFix" />
+      <image src="{{ concatAvatarUrl.concatAvatarUrl(userInfo.avatar,imageUrl) }}" mode="widthFix|heightFix" />
       <text>{{ userInfo.nickName }}</text>
     </view>
     <view class="content" bindtap="navigateCollection">

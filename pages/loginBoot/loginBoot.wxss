@@ -58,6 +58,7 @@ page {
   font-size: 35rpx;
   line-height: 50px;
   text-align: center;
+  margin-bottom: 10px;
 }
 
 .footer .register text {

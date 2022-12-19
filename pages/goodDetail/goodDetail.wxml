@@ -1,0 +1,11 @@
+<view>
+  盲盒封面
+  <image src="{{imageUrl+categoryData.kzxCategory.categoryCover}}"></image>
+</view>
+<view>盲盒名：{{categoryData.kzxCategory.categoryName}}</view>
+<view>盲盒介绍：{{categoryData.kzxCategory.categoryIntroduction}}</view>
+<view>店铺名：{{categoryData.kzxShops.shopsName}}</view>
+<view>
+  店铺封面
+  <image src="{{imageUrl+categoryData.kzxShops.shopsCover}}"></image>
+</view>

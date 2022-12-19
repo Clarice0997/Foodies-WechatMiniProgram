@@ -11,6 +11,7 @@
     "pages/collection/collection",
     "pages/message/message",
     "pages/help/help",
+    "pages/goodDetail/goodDetail",
     "pages/logs/logs"
   ],
   "window": {

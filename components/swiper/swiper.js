@@ -34,5 +34,12 @@ Component({
   /**
    * 组件的方法列表
    */
-  methods: {}
+  methods: {
+    toGoodDetail(e) {
+      console.log(e.currentTarget.dataset.id)
+      wx.navigateTo({
+        url: '/pages/goodDetail/goodDetail?categoryId=' + e.currentTarget.dataset.id
+      })
+    }
+  }
 })

@@ -5,11 +5,8 @@
     <swiper swiperData="{{swiperData}}" autoplay="{{swiperOptions.autoplay}}" interval="{{swiperOptions.interval}}" duration="{{swiperOptions.duration}}"></swiper>
   </view>
   <view class="footer">
-    <card />
-    <card />
-    <card />
-    <card />
-    <card />
-    <card />
+    <block wx:for="{{categoryList}}" wx:key="{{item.categoryId}}">
+      <card itemData="{{item}}" />
+    </block>
   </view>
 </view>

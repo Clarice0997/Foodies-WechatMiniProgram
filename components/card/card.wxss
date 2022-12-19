@@ -32,12 +32,14 @@
 
 .card-container .content .name {
   display: block;
-  width: 20%;
+  text-align: left;
+  width: 50%;
   height: 50%;
   font-weight: 700;
   font-size: 18px;
   line-height: 23px;
   margin-bottom: 7px;
+  margin-left: 11px;
 }
 
 .card-container .content .desc {

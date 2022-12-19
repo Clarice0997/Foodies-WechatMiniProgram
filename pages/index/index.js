@@ -1,4 +1,5 @@
 const { getBanner } = require('../../api/index.js')
+const { getAllCategory } = require('../../api/categoryAPI')
 import { baseUrl } from '../../api/base'
 
 Page({
@@ -10,7 +11,8 @@ Page({
       duration: 1000,
       swiperData: []
     },
-    baseUrl: baseUrl
+    baseUrl: baseUrl,
+    categoryList: []
   },
   clickSearch() {
     wx.navigateTo({
@@ -19,13 +21,27 @@ Page({
   },
 
   onLoad() {
-    getBanner().then(res => {
-      console.log(res)
-      this.setData({
-        swiperData: res.data.rows
+    // 调用获取轮播图函数
+    getBanner()
+      .then(res => {
+        this.setData({
+          swiperData: res.data.rows
+        })
       })
-      console.log(this.data.swiperData)
-    })
+      .catch(err => {
+        console.log(err)
+      })
+    // 调用获取盲盒列表函数
+    getAllCategory()
+      .then(res => {
+        this.setData({
+          categoryList: res.data.rows
+        })
+        console.log(this.data.categoryList)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   },
   onReachBottom() {
     wx.showToast({

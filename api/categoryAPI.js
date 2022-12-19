@@ -7,5 +7,10 @@ function getCategoryDetails(data) {
   return request(baseUrl + '/wechat/categorydetails/' + data, 'GET')
 }
 
+// 获取所有盲盒列表
+function getAllCategory() {
+  return request(baseUrl + '/wechat/allcategory' + '?pageNum=1&pageSize=300', 'GET')
+}
+
 // 导出
-module.exports = { getCategoryDetails }
+module.exports = { getCategoryDetails, getAllCategory }

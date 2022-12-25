@@ -30,7 +30,7 @@ Page({
     // 伪this
     let _this = this
     // 判断账号密码用户协议是否都填写完整
-    if (!this.data.username && !this.data.password && this.data.checked === false) {
+    if (this.data.username == '' || this.data.password == '' || !this.data.checked) {
       wx.showToast({
         title: '信息不完整',
         icon: 'error',

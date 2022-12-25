@@ -237,8 +237,11 @@ Page({
   confirmPasswordHandler() {
     let oldPassword = this.data.passwordList.oldPassword
     let newPassword = this.data.passwordList.newPassword
-    // 判断旧密码&新密码不能相同 发起修改密码请求
-    if (oldPassword != newPassword) {
+    let checkedPassword = this.data.passwordList.checkedPassword
+    console.log(checkedPassword)
+    console.log(oldPassword != newPassword && newPassword == checkedPassword && oldPassword != '' && newPassword != '' && checkedPassword != '')
+    // 判断旧密码&新密码不能相同 || 新密码和确认密码相同 发起修改密码请求
+    if (oldPassword != newPassword && newPassword == checkedPassword && oldPassword != '' && newPassword != '' && checkedPassword != '') {
       let query = `?oldPassword=${oldPassword}&newPassword=${newPassword}`
       updatePwd(query)
         .then(res => {
@@ -275,9 +278,33 @@ Page({
             }
           })
         })
-    } else {
+    } else if (oldPassword == '') {
+      wx.showToast({
+        title: '旧密码不能为空',
+        icon: 'error',
+        duration: 2000
+      })
+    } else if (newPassword == '') {
+      wx.showToast({
+        title: '新密码不能为空',
+        icon: 'error',
+        duration: 2000
+      })
+    } else if (checkedPassword == '') {
+      wx.showToast({
+        title: '确认密码不能为空',
+        icon: 'error',
+        duration: 2000
+      })
+    } else if (oldPassword == newPassword) {
       wx.showToast({
         title: '密码不能相同',
+        icon: 'error',
+        duration: 2000
+      })
+    } else if (newPassword != checkedPassword) {
+      wx.showToast({
+        title: '确认密码不相同',
         icon: 'error',
         duration: 2000
       })
